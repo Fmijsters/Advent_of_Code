@@ -1,9 +1,8 @@
 import numpy as np
 
-def find_basin2(lowest_point,grid):
+def find_basin(lowest_point,grid):
 	found_values=[lowest_point]
 	values_to_check = [lowest_point]
-	iters= 0
 	while len(values_to_check) != 0:
 		to_check,y,x = values_to_check.pop()
 		for i,delta in enumerate([-1,-1,1,1]):
@@ -41,7 +40,7 @@ with open('input.txt') as f:
 				lowest_points.append((column,row_id,col_id))
 	results =[]
 	for lowest_point in lowest_points:
-		results.append(len(find_basin2(lowest_point,grid)))
+		results.append(len(find_basin(lowest_point,grid)))
 	top_3_idx = np.argsort(results)[-3:]
 	top_3_values = [results[i] for i in top_3_idx]
 	print(np.prod(top_3_values))
